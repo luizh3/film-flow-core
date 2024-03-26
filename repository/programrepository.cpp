@@ -4,7 +4,6 @@
 #include <QDebug>
 #include <QDir>
 #include <QSettings>
-#include <QCoreApplication>
 #include <QRegularExpression>
 
 ProgramSearchModel* ProgramRepository::findProgramsSearch() const {

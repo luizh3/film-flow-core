@@ -3,11 +3,9 @@
 
 #include <QList>
 
-#include <film-flow-core/film-flow-core_global.h>
-
 #include "programresponse.h"
 
-class FILMFLOWCORE_EXPORT ProgramsResponse : public HttpStubResponse {
+class ProgramsResponse : public HttpStubResponse {
 public:
     ProgramsResponse();
     ~ProgramsResponse();

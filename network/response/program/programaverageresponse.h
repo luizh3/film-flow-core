@@ -4,9 +4,7 @@
 #include <QString>
 #include <QJsonObject>
 
-#include <film-flow-core/film-flow-core_global.h>
-
-class FILMFLOWCORE_EXPORT ProgramAverageResponse {
+class ProgramAverageResponse {
 public:
     ProgramAverageResponse( const QJsonObject& jsonObject );
 
