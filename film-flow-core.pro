@@ -50,10 +50,27 @@ HEADERS += \
     utils/retrytask.h \
     utils/synctask.h
 
-include($$PWD/../film-flow-generic.pri)
-
 LIBRARY_DEPENDENCIES = \
     HTTP-REQUEST
 
-include($$PWD/../film-flow-dependencies.pri )
+CONFIG( debug, debug|release ) {
+    DESTDIR = build/debug
+}
+
+CONFIG( release, debug|release ) {
+    DESTDIR = build/release
+}
+
+OBJECTS_DIR = $$DESTDIR/.obj
+MOC_DIR = $$DESTDIR/.moc
+RCC_DIR = $$DESTDIR/.qrc
+UI_DIR = $$DESTDIR/.u
+
+unix {
+    target.path = /usr/bin
+    INSTALLS += target
+}
+
+include( $$PWD/film-flow-core-dependencies.pri )
+
 
