@@ -3,11 +3,9 @@
 
 #include <http-request/response/httpstubresponse.h>
 
-#include <film-flow-core/film-flow-core_global.h>
-
 #include "programaverageresponse.h"
 
-class FILMFLOWCORE_EXPORT ProgramResponse : public HttpStubResponse {
+class ProgramResponse : public HttpStubResponse {
 public:
     ProgramResponse();
     ~ProgramResponse();

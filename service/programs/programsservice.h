@@ -3,11 +3,9 @@
 
 #include <QList>
 
-#include <film-flow-core/film-flow-core_global.h>
-
 #include <model/program/programmodel.h>
 
-class FILMFLOWCORE_EXPORT ProgramsService {
+class ProgramsService {
 public:
     virtual ~ProgramsService() = default;
     virtual QList<ProgramModel*> findOnTheRise() const = 0;
