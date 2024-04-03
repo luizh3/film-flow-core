@@ -11,27 +11,27 @@ public:
     static QList<Second*> toList( QList<First*> values ) {
         // static_assert( std::is_base_of<Derived,Base>::value, "O Tipo atual precisa extender da base class");
 
-        QList<Second*> seconds = {};
+        QList<Second*> baseValues = {};
 
-        for( Second* second : values ) {
-            seconds.append( second );
+        for( Second* value : values ) {
+            baseValues.append( value );
         }
 
-        return seconds;
+        return baseValues;
     };
 
-    static QList<First> toList( const QList<Second>& seconds, std::function<First( const Second second)> convertCallback) {
+    static QList<First> toList( const QList<Second>& values, std::function<First( const Second value)> convertCallback) {
 
-        QList<First> firsts = {};
+        QList<First> newValues = {};
 
-        for( const Second second : seconds ) {
-            const First first = convertCallback( second );
-            if( first != nullptr ) {
-                firsts.append( first );
+        for( const Second value : values ) {
+            const First newValue = convertCallback( value );
+            if( newValue != nullptr ) {
+                newValues.append( newValue );
             }
         }
 
-        return firsts;
+        return newValues;
     }
 };
 
