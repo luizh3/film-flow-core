@@ -5,30 +5,33 @@
 
 #include <film-flow-core/film-flow-core_global.h>
 
-template<typename Derived, typename Base>
+template<typename First, typename Second>
 class FILMFLOWCORE_EXPORT ListConverter {
 public:
-    static QList<Base*> toList( QList<Derived*> values ) {
+    static QList<Second*> toList( QList<First*> values ) {
         // static_assert( std::is_base_of<Derived,Base>::value, "O Tipo atual precisa extender da base class");
 
-        QList<Base*> bases = {};
+        QList<Second*> seconds = {};
 
-        for( Base* base : values ) {
-            bases.append( base );
+        for( Second* second : values ) {
+            seconds.append( second );
         }
 
-        return bases;
+        return seconds;
     };
 
-    static QList<Derived> toList( const QList<Base>& bases, std::function<Derived( const Base base)> convertCallback) {
+    static QList<First> toList( const QList<Second>& seconds, std::function<First( const Second second)> convertCallback) {
 
-        QList<Derived> deriveds = {};
+        QList<First> firsts = {};
 
-        for( const Base base : bases ) {
-            deriveds.append( convertCallback( base ) );
+        for( const Second second : seconds ) {
+            const First first = convertCallback( second );
+            if( first != nullptr ) {
+                firsts.append( first );
+            }
         }
 
-        return deriveds;
+        return firsts;
     }
 };
 
