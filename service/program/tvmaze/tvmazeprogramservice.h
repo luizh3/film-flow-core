@@ -1,10 +1,10 @@
-#ifndef TVMAZEPROGRAMSSERVICE_H
-#define TVMAZEPROGRAMSSERVICE_H
+#ifndef TVMAZEPROGRAMSERVICE_H
+#define TVMAZEPROGRAMSERVICE_H
 
-#include <service/programs/programsservice.h>
-#include <network/endpoint/tvmaze/tvmazeendpoint.h>
+#include <service/program/programservice.h>
+#include <network/endpoint/program/tvmaze/tvmazeendpoint.h>
 
-class TvMazeProgramsService : public ProgramsService {
+class TvMazeProgramService : public ProgramService {
 public:
     QList<ProgramModel*> findOnTheRise() const override;
     QList<ProgramModel*> findByName( const QString& dsQuery ) const override;
@@ -15,4 +15,4 @@ private:
     TvMazeEndpoint _tvMazeEndpoint;
 };
 
-#endif // TVMAZEPROGRAMSSERVICE_H
+#endif // TVMAZEPROGRAMSERVICE_H

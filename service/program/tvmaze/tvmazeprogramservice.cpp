@@ -1,28 +1,27 @@
-#include "tvmazeprogramsservice.h"
+#include "tvmazeprogramservice.h"
 
 #include <memory>
 
 #include <utils/retrytask.h>
 #include <utils/listconverter.h>
 
-#include <repository/programrepository.h>
-
-#include <converter/programconverter.h>
+#include <repository/program/programrepository.h>
+#include <converter/program/programconverter.h>
 
 namespace {
     constexpr const int NR_MAX_RETRY = 3;
 }
 
-QList<ProgramModel*> TvMazeProgramsService::findOnTheRise() const {
+QList<ProgramModel*> TvMazeProgramService::findOnTheRise() const {
 
-    qInfo() << "TvMazeProgramsService::findOnTheRise";
+    qInfo() << "TvMazeProgramService::findOnTheRise";
 
     // TODO revisar uma maneira melhor de fazer essa rotina
     QList<ProgramModel*> programs = {};
 
     std::unique_ptr<ProgramSearchModel> programSearch( ProgramRepository().findProgramsSearch() );
 
-    qInfo() << "TvMazeProgramsService::findOnTheRise [IS_SEARCH_BY_NAME]" << programSearch->isSearchByName();
+    qInfo() << "TvMazeProgramService::findOnTheRise [IS_SEARCH_BY_NAME]" << programSearch->isSearchByName();
 
     if( programSearch->isSearchByName() ) {
 
@@ -30,7 +29,7 @@ QList<ProgramModel*> TvMazeProgramsService::findOnTheRise() const {
             return findBySingleSearch( dsName );
         } );
 
-        qInfo() << "TvMazeProgramsService::findOnTheRise [PROGRAMS_COUNT]" << programs.count();
+        qInfo() << "TvMazeProgramService::findOnTheRise [PROGRAMS_COUNT]" << programs.count();
 
         return programs;
     }
@@ -40,15 +39,15 @@ QList<ProgramModel*> TvMazeProgramsService::findOnTheRise() const {
     } );
 
 
-    qInfo() << "TvMazeProgramsService::findOnTheRise [PROGRAMS_COUNT]" << programs.count();
+    qInfo() << "TvMazeProgramService::findOnTheRise [PROGRAMS_COUNT]" << programs.count();
 
     return programs;
 
 }
 
-QList<ProgramModel*> TvMazeProgramsService::findByName( const QString& dsQuery ) const {
+QList<ProgramModel*> TvMazeProgramService::findByName( const QString& dsQuery ) const {
 
-    qInfo() << "TvMazeProgramsService::findByName [DS_QUERY]" << dsQuery;
+    qInfo() << "TvMazeProgramService::findByName [DS_QUERY]" << dsQuery;
 
     QList<ProgramModel*> programs = {};
 
@@ -57,7 +56,7 @@ QList<ProgramModel*> TvMazeProgramsService::findByName( const QString& dsQuery )
         std::unique_ptr<ProgramsResponse> response ( _tvMazeEndpoint.findByName( dsQuery ) );
 
         if( !response || !response->isSuccess() ){
-            qCritical() << "TvMazeProgramsService::findByName falha ao buscar o [DS_QUERY]" << dsQuery;
+            qCritical() << "TvMazeProgramService::findByName falha ao buscar o [DS_QUERY]" << dsQuery;
             return false;
         }
 
@@ -70,9 +69,9 @@ QList<ProgramModel*> TvMazeProgramsService::findByName( const QString& dsQuery )
     return programs;
 }
 
-ProgramModel* TvMazeProgramsService::findByIdProgram( const QString& idProgram ) const {
+ProgramModel* TvMazeProgramService::findByIdProgram( const QString& idProgram ) const {
 
-    qInfo() << "TvMazeProgramsService::findByIdProgram [ID_PROGRAM]" << idProgram;
+    qInfo() << "TvMazeProgramService::findByIdProgram [ID_PROGRAM]" << idProgram;
 
     ProgramModel* program = nullptr;
 
@@ -81,7 +80,7 @@ ProgramModel* TvMazeProgramsService::findByIdProgram( const QString& idProgram )
         std::unique_ptr<ProgramResponse> response ( _tvMazeEndpoint.findByIdProgram( idProgram ) );
 
         if( !response || !response->isSuccess() ){
-            qCritical() << "TvMazeProgramsService::findById falha ao buscar o [ID_PROGRAMA]" << idProgram;
+            qCritical() << "TvMazeProgramService::findById falha ao buscar o [ID_PROGRAMA]" << idProgram;
             return false;
         }
 
@@ -91,15 +90,15 @@ ProgramModel* TvMazeProgramsService::findByIdProgram( const QString& idProgram )
 
     }, NR_MAX_RETRY );
 
-    qInfo() << "TvMazeProgramsService::findById [HAS_PROGRAM]" << ( program != nullptr );
+    qInfo() << "TvMazeProgramService::findById [HAS_PROGRAM]" << ( program != nullptr );
 
     return program;
 
 }
 
-ProgramModel* TvMazeProgramsService::findBySingleSearch( const QString& dsQuery ) const {
+ProgramModel* TvMazeProgramService::findBySingleSearch( const QString& dsQuery ) const {
 
-    qInfo() << "TvMazeProgramsService::findBySingleSearch [DS_QUERY]" << dsQuery;
+    qInfo() << "TvMazeProgramService::findBySingleSearch [DS_QUERY]" << dsQuery;
 
     ProgramModel* program = nullptr;
 
@@ -108,7 +107,7 @@ ProgramModel* TvMazeProgramsService::findBySingleSearch( const QString& dsQuery 
         std::unique_ptr<ProgramResponse> response ( _tvMazeEndpoint.findBySingleSearch( dsQuery ) );
 
         if( !response || !response->isSuccess() ){
-            qCritical() << "TvMazeProgramsService::findBySingleSearch falha ao buscar o [ID_PROGRAMA]" << dsQuery;
+            qCritical() << "TvMazeProgramService::findBySingleSearch falha ao buscar o [ID_PROGRAMA]" << dsQuery;
             return false;
         }
 
@@ -118,7 +117,7 @@ ProgramModel* TvMazeProgramsService::findBySingleSearch( const QString& dsQuery 
 
     }, NR_MAX_RETRY );
 
-    qInfo() << "TvMazeProgramsService::findBySingleSearch [HAS_PROGRAM]" << ( program != nullptr );
+    qInfo() << "TvMazeProgramService::findBySingleSearch [HAS_PROGRAM]" << ( program != nullptr );
 
     return program;
 
