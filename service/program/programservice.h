@@ -1,15 +1,15 @@
-#ifndef PROGRAMSSERVICE_H
-#define PROGRAMSSERVICE_H
+#ifndef PROGRAMSERVICE_H
+#define PROGRAMSERVICE_H
 
 #include <QList>
 
 #include <model/program/programmodel.h>
 
-class ProgramsService {
+class ProgramService {
 public:
-    virtual ~ProgramsService() = default;
+    virtual ~ProgramService() = default;
     virtual QList<ProgramModel*> findOnTheRise() const = 0;
     virtual QList<ProgramModel*> findByName( const QString& dsQuery ) const = 0;
 };
 
-#endif // PROGRAMSSERVICE_H
+#endif // PROGRAMSERVICE_H

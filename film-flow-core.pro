@@ -10,40 +10,40 @@ DEFINES += PROJECT_PATH=\"\\\"$${_PRO_FILE_PWD_}\\\"\"
 CONFIG += c++17
 
 SOURCES += \
-    controller/programscontroller.cpp \
-    converter/programconverter.cpp \
-    delegate/programsdelegate.cpp \
+    controller/program/programcontroller.cpp \
+    converter/program/programconverter.cpp \
+    delegate/program/programdelegate.cpp \
     model/program/programaveragemodel.cpp \
     model/program/programmodel.cpp \
     model/program/programsearchmodel.cpp \
-    network/endpoint/tvmaze/tvmazeendpoint.cpp \
+    network/endpoint/program/tvmaze/tvmazeendpoint.cpp \
     network/response/program/programaverageresponse.cpp \
     network/response/program/programresponse.cpp \
     network/response/program/programsresponse.cpp \
-    repository/programrepository.cpp \
-    service/factory/programsservicefactory.cpp \
-    service/programs/tvmaze/tvmazeprogramsservice.cpp \
+    repository/program/programrepository.cpp \
+    service/factory/program/programservicefactory.cpp \
+    service/program/tvmaze/tvmazeprogramservice.cpp \
     utils/retrytask.cpp \
     utils/synctask.cpp
 
 HEADERS += \
-    controller/programscontroller.h \
-    converter/programconverter.h \
-    delegate/programsdelegate.h \
+    controller/program/programcontroller.h \
+    converter/program/programconverter.h \
+    delegate/program/programdelegate.h \
     film-flow-core_global.h \
     model/program/programaveragemodel.h \
     model/program/programsearchmodel.h \
-    network/endpoint/tvmaze/tvmazeendpoint.h \
+    network/endpoint/program/tvmaze/tvmazeendpoint.h \
     network/response/program/programaverageresponse.h \
     network/response/program/programsresponse.h \
-    repository/programrepository.h \
+    repository/program/programrepository.h \
+    service/factory/program/programservicefactory.h \
+    service/program/programservice.h \
+    service/program/tvmaze/tvmazeprogramservice.h \
     utils/listconverter.h \
     model/program/programmodel.h \
     model/program/typeapiprogramenum.h \
     network/response/program/programresponse.h \
-    service/factory/programsservicefactory.h \
-    service/programs/programsservice.h \
-    service/programs/tvmaze/tvmazeprogramsservice.h \
     utils/retrytask.h \
     utils/synctask.h
 
